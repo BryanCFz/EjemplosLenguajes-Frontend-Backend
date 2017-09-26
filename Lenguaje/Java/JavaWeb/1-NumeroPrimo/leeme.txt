@@ -1,0 +1,15 @@
+EJERCICIO
+ 1. Que en una pantalla usted coloque un campo de texto, y un botón. 
+ 2. Que al presionar el botón a usted le salga en una tabla abajito todos los primos de ese numero
+
+
+FRONT-END
+ - html  
+ - css
+ - javascript: para validar que el campo no esté vacio      
+BACK-END
+  - java
+  
+              
+RECURSOS
+ - maven 

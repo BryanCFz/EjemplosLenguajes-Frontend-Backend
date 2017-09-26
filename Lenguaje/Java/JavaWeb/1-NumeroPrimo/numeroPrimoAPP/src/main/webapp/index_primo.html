@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="es" ng-app="numeroPrimoAPP">
+<head>
+  <!-- Required meta tags -->
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+<!---->
+<!---->
+  <!-- Bootstrap CSS -->
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+  <!--Google Fonts-->
+  <link href="https://fonts.googleapis.com/css?family=Roboto" rel="stylesheet">
+  <!--fontawesome-Icons cdn-->
+  <script src="https://use.fontawesome.com/65a7587981.js"></script>
+  <!--Angular libreria-->
+   <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.6/angular.min.js"></script>
+  <!--CSS personalizado-->
+  <link type="text/css" media="all" rel="stylesheet" href="estilo.css">
+
+  <title>Numeros Primos</title>
+</head>
+    <body ng-controller="numerosPrimosController">
+      <!--Inicio ANGULAR-->
+      <script>
+        var myapp = angular.module('numeroPrimoAPP',[]);
+        myapp.controller('numerosPrimosController', function($scope, $http){
+
+          var primi = document.getElementById('idNumeroPrimo').value;
+
+          $http.get('http://localhost:8080/numeroPrimo/api/restPrim/numerosPrimosAll/' + primi).success( function(response){
+            $scope.listNumerosPrimos = response;
+            document.getElementById("idListaNumerosPrimos").innerHTML = $scope.listNumerosPrimos;
+          });
+
+        });
+      </script>
+      <!--Fin ANGULAR-->
+
+      <!--Inicio App-->
+
+      <div class="jumbotron text-center">
+        <h1>Numeros Primos</h1>
+        <p>¡Los que son divisibles por 1 y por el mismo número!</p>
+        <img src="https://es.wikipedia.org/wiki/N%C3%BAmero_primo#/media/File:Sieve_of_Eratosthenes_animation.gif"/>
+      </div>
+
+      <div class="container">
+        <h1>Información</h1>
+        <p>Esta aplicación trata sobre primos en los números enteros:</p>
+        <blockquote>
+          <p>En matemáticas, un <kbd>número primo</kbd> es un número natural mayor que 1 que tiene únicamente dos divisores distintos: él mismo y el 1.1​2​ Por el contrario, los números compuestos son los números naturales que tienen algún divisor natural aparte de sí mismos y del 1 y por lo tanto, pueden factorizarse. El número 1, por convenio, no se considera ni primo ni compuesto..</p>
+          <p>Los 168 números primos menores de 1000 son:</p>
+          <footer>2, 3, 5, 7, 11, 13, 17, 19, 23, 29, 31, 37, 41, 43, 47, 53, 59, 61, 67, 71, 73, 79, 83, 89, 97, 101, 103, 107, 109, 113, 127, 131, 137, 139, 149, 151, 157, 163, 167, 173, 179, 181, 191, 193, 197, 199, 211, 223, 227, 229, 233, 239, 241, 251, 257, 263, 269, 271, 277, 281, 283, 293, 307, 311, 313, 317, 331, 337, 347, 349, 353, 359, 367, 373, 379, 383, 389, 397, 401, 409, 419, 421, 431, 433, 439, 443, 449, 457, 461, 463, 467, 479, 487, 491, 499, 503, 509, 521, 523, 541, 547, 557, 563, 569, 571, 577, 587, 593, 599, 601, 607, 613, 617, 619, 631, 641, 643, 647, 653, 659, 661, 673, 677, 683, 691, 701, 709, 719, 727, 733, 739, 743, 751, 757, 761, 769, 773, 787, 797, 809, 811, 821, 823, 827, 829, 839, 853, 857, 859, 863, 877, 881, 883, 887, 907, 911, 919, 929, 937, 941, 947, 953, 967, 971, 977, 983, 991, 997</footer>
+        </blockquote>
+      </div>
+
+      <div class="container">
+        <p>
+          Se mostrara un listado de los <abbr title="World Health Organization">numeros primos</abbr>. Según el <mark>número</mark> ingresado.
+        </p>
+        <form class="form-inline" action="#">
+          <div class="form-group">
+            <label for="numeroPrimo">Número:</label>
+            <input type="number" class="form-control" id="idNumeroPrimo" placeholder="Número Entero" name="nameNumPrimo" ng-model="numPrimo">
+          </div>
+          <button type="submit" class="btn btn-danger" onclick="is_errorField()">Mostrar</button>
+        </form>
+        <!--RESULTADO-->
+        <div class="panel-group" style="margin-top: 30px;"> <!--*****OJO ARREGLAR ESTO EN UN CSS*****-->
+          <!--Mostrar este, cuando se ingresa un numero Entero, correcto-->
+          <div id="entonado" class="panel panel-primary">
+            <div class="panel-heading" style="background-color: #000000;">Lista de números primos</div><!--*****OJO ARREGLAR ESTO EN UN CSS*****-->
+            <div id="idListaNumerosPrimos" class="panel-body" ng-bind="numPrimo">Resultado =  </div>
+          </div>
+          <!--Mostrar este, cuando se ingresa algo incorrecto como: letras,campoVacio, campoMezcladoLetraNumero-->
+          <div id="errorRojo" class="panel panel-danger">
+            <div class="panel-heading">ERROR</div>
+            <div id="mensajeError" class="panel-body">aqui colocar el motivo del error</div>
+          </div>
+        </div> <!--FIN RESULTADO-->
+
+        <button type="button" onclick="funcion_PerroCatreJijueputa()">Click Me!</button>
+
+      </div> <!--FIN div.container-->
+
+
+
+      <!--FIN - Inicio App-->
+        <!--=================================================================================================================================================================================-->
+        <!--SCRIPTS-->
+        <!-- jQuery first, then Tether, then Bootstrap JS. -->
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+        <!--personalizado mi JS-->
+        <script type="text/javascript" src="validacion.js"></script>
+        <!--Recargar pagina con pluggin atom LiveReload-->
+        <script type="text/javascript" src="http://localhost:35729/livereload.js"></script>
+        <!--Servicios Rest-->
+        <script src="services/primoServices.js"></script>
+        <script src="app.js"></script>
+
+    </body>
+</html>

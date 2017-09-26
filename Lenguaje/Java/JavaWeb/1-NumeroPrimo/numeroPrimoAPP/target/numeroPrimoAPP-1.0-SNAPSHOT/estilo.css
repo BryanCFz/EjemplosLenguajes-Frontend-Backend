@@ -1,0 +1,8 @@
+h1 {
+  color: #ff0800;
+}
+
+
+#errorRojo {
+  display: block; /*block OR none: que desbloquea y muestra*/
+}

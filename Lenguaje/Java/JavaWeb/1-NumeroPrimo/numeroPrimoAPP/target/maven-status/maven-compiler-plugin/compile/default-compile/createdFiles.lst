@@ -1,0 +1,4 @@
+com\bcf\numeroprimo\modelo\Eratostenes.class
+com\bcf\numeroprimo\modelo\Eratostenes_mod.class
+com\bcf\numeroprimo\webservice\rest\ApplicationConfig.class
+com\bcf\numeroprimo\webservice\rest\NumeroPrimoRest.class
